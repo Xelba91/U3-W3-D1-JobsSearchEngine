@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Job from "./Job";
-import { useParams, NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const CompanySearchResults = () => {
   const [jobs, setJobs] = useState([]);
@@ -16,7 +16,7 @@ const CompanySearchResults = () => {
 
   const getJobs = async () => {
     try {
-      const response = await fetch(baseEndpoint + params.company);
+      const response = await fetch(baseEndpoint + params.companyName);
       if (response.ok) {
         const { data } = await response.json();
         setJobs(data);
@@ -31,7 +31,7 @@ const CompanySearchResults = () => {
   return (
     <Container>
       <Row>
-        <Col className="my-3">
+        <Col>
           <NavLink className="nav-link btn btn-primary m-2" style={{ height: "30px", width: "60px" }} to={"/"}>
             Home
           </NavLink>
